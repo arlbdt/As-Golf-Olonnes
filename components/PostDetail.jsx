@@ -14,7 +14,7 @@ const PostDetail = ({ post }) => {
         />
         <div className="px-4 sm:px-8 lg:px-0">
           <div className="flex flex-col gap-4 my-8 ">
-            <h1 className="text-gray-700 text-3xl font-semibold">
+            <h1 className="text-gray-700 text-xl sm:text-2xl lg:text-3xl font-semibold">
               {post.titre}
             </h1>
             <div className="flex items-center gap-4">

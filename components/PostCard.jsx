@@ -50,7 +50,9 @@ const PostCard = ({ post }) => {
 
         {post.extrait && (
           <p className="text-base md:text-lg text-gray-700 font-normal px-4 lg:px-20">
-            {post.extrait}
+            {`${post.extrait.slice(0, 125)}${
+              post.extrait.length > 124 ? "..." : ""
+            }`}
           </p>
         )}
 
@@ -67,52 +69,3 @@ const PostCard = ({ post }) => {
 };
 
 export default PostCard;
-
-{
-  /* <div className="relative overflow-hidden shadow-md pb-80 mb-6">
-        <img
-          src={post.imagePrincipale.url}
-          alt={post.titre}
-          className="object-top absolute h-80 w-full shadow-lg rounded-t-lg lg:rounded-lg"
-        />
-      </div>
-
-      <h1 className="transition duration-400 text-center mb-8 cursor-pointer hover:text-pink-600 text-3xl font-semibold">
-        <Link href={`/article/${post.slug}`}>{post.titre}</Link>
-      </h1>
-
-      <div className="block lg:flex text-center items-center justify-center mb-8 w-full">
-        <div className="flex items-center justify-center mb-4 lg:mb-0 w-full lg:w-auto mr-8">
-          <Image
-            src={post.auteur.photo.url}
-            alt={post.auteur.nom}
-            height="30px"
-            width="30px"
-            unoptimized
-            className="align-middle rounded-full h-8 w-8"
-          />
-          <p className="inline align-middle text-gray-700 ml-4 text-lg">
-            {post.auteur.nom}
-          </p>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <FcCalendar size={24} />
-          <span>{moment(post.createdAt).format("DD MMM YYYY")}</span>
-        </div>
-      </div>
-
-      {post.extrait && (
-        <p className="text-center text-lg text-gray-700 font-normal px-4 lg:px-20 mb-8">
-          {post.extrait}
-        </p>
-      )}
-
-      <div className="text-center">
-        <Link href={`/article/${post.slug}`}>
-          <span className="shadow-2xl transition duration-500 transform hover:-translate-y-1 inline-block bg-pink-600 text-lg font-medium rounded-full text-white px-8 py-3 cursor-pointer">
-            Lire la suite...
-          </span>
-        </Link>
-      </div> */
-}

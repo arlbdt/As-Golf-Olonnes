@@ -42,21 +42,31 @@ const FeaturedPosts = () => {
     });
   }, []);
 
+  const ArrowFix = arrowProps => {
+    const { carouselState, children, ...restArrowProps } = arrowProps;
+    return <span {...restArrowProps}> {children} </span>;
+  };
+
   const customLeftArrow = (
-    <div className="absolute left-0 cursor-pointer">
-      <BsFillArrowLeftCircleFill size={40} color="white" />
-    </div>
+    <ArrowFix>
+      <div className="absolute left-0 cursor-pointer">
+        <BsFillArrowLeftCircleFill size={40} color="white" />
+      </div>
+    </ArrowFix>
   );
 
   const customRightArrow = (
-    <div className="absolute right-0 cursor-pointer">
-      <BsFillArrowRightCircleFill size={40} color="white" />
-    </div>
+    <ArrowFix>
+      <div className="absolute right-0 cursor-pointer">
+        <BsFillArrowRightCircleFill size={40} color="white" />
+      </div>
+    </ArrowFix>
   );
 
   return (
-    <div className="mb-10">
+    <div className="mb-20">
       <Carousel
+        ssr
         infinite
         customLeftArrow={customLeftArrow}
         customRightArrow={customRightArrow}

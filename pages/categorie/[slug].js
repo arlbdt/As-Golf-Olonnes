@@ -2,7 +2,7 @@ import React from 'react';
 import {useRouter} from 'next/router';
 import {getCategories, getCategoryPost} from '../../services';
 import Head from 'next/head';
-import PostCard from '../../components/PostCard';
+import Pagination from "../../components/Pagination";
 import Categories from '../../components/Categories';
 import Loader from '../../components/Loader';
 
@@ -31,9 +31,7 @@ const CategoryPost = ({posts}) => {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 <div className="col-span-1 lg:col-span-8">
-                    {posts.map((post, index) => (
-                        <PostCard key={index} post={post.node} />
-                    ))}
+                    <Pagination posts={posts} />
                 </div>
                 <div className="col-span-1 lg:col-span-4">
                     <div className="relative lg:sticky top-8">

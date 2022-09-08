@@ -1,11 +1,13 @@
+import React from "react";
 import Head from "next/head";
-import PostCard from "../components/PostCard";
 import Categories from "../components/Categories";
 import PostWidget from "../components/PostWidget";
+import Pagination from "../components/Pagination";
 import FeaturedPosts from "../sections/FeaturedPosts";
 import {getPosts} from "../services";
 
 export default function Home({posts}) {
+
   return (
     <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-10 mb-8">
       <Head>
@@ -24,13 +26,11 @@ export default function Home({posts}) {
 
       <FeaturedPosts />
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:mb-10">
         <div className="lg:col-span-8 col-span-1">
-          {posts.map((post, index) => (
-            <PostCard key={index} post={post.node} />
-          ))}
+          <Pagination posts={posts} />
         </div>
-        <div className="lg:col-span-4 col-span-1">
+        <div className="lg:col-span-4 col-span-1 mb-10 lg:mb-0">
           <div className="lg:sticky relative top-8">
             <PostWidget />
             <Categories />
