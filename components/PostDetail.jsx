@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import moment from "moment";
 import { RichText } from "@graphcms/rich-text-react-renderer";
 import { FcCalendar } from "react-icons/fc";
@@ -7,9 +8,11 @@ const PostDetail = ({ post }) => {
   return (
     <>
       <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-10">
-        <img
+        <Image
           src={post.imagePrincipale.url}
           alt={post.titre}
+          width="1200px"
+          height="800px"
           className="aspect-[3/2] shadow-lg rounded-t-lg lg:rounded-lg"
         />
         <div className="px-4 sm:px-8 lg:px-0">

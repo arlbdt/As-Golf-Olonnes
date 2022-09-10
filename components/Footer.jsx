@@ -12,6 +12,7 @@ const Footer = () => {
           <a
             href="https://aurelien-bedouet.com"
             target="_blank"
+            rel="noreferrer"
             className="font-bold"
           >
             AB
