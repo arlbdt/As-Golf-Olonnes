@@ -1,1 +1,1 @@
-### Blog made with Next.js / GraphQL / Tailwind CSS
+### Blog made with React using Next.js / GraphQL / Tailwind CSS
