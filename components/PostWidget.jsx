@@ -37,10 +37,10 @@ const PostWidget = ({ categories, slug }) => {
               {moment(post.createdAt).format("DD MMM YYYY")}
             </p>
             <Link href={`/article/${post.slug}`}>
-              <p className="text-base font-medium text-gray-700 cursor-pointer">{`${post.titre.slice(
+              <span className="text-base font-medium text-gray-700 cursor-pointer">{`${post.titre.slice(
                 0,
                 75
-              )}${post.titre.length > 74 ? "..." : ""}`}</p>
+              )}${post.titre.length > 74 ? "..." : ""}`}</span>
             </Link>
           </div>
         </div>
