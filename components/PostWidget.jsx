@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import moment from "moment";
 import Link from "next/link";
-
 import { getSimilarPosts, getRecentPosts } from "../services";
 
 const PostWidget = ({ categories, slug }) => {
@@ -17,7 +16,7 @@ const PostWidget = ({ categories, slug }) => {
   }, [slug]);
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-8 lg:px-4 xl:px-8 mb-8">
+    <div className="bg-white shadow-lg rounded-lg p-8 lg:px-4 xl:px-8 mb-16">
       <h3 className="text-gray-700 text-xl mb-8 font-semibold border-b pb-4">
         {slug ? "Articles Similaires" : "Articles Récents"}
       </h3>

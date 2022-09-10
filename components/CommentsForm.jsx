@@ -14,7 +14,7 @@ const CommentsForm = ({ slug }) => {
     emailEl.current.value = window.localStorage.getItem("email");
   }, []);
 
-  const handleCommentSubmission = () => {
+  const handleCommentSubmission = async () => {
     setError(false);
 
     const { value: commentaire } = commentEl.current;
@@ -27,13 +27,6 @@ const CommentsForm = ({ slug }) => {
       return;
     }
 
-    const commentObj = {
-      nom,
-      email,
-      commentaire,
-      slug,
-    };
-
     if (storeData) {
       window.localStorage.setItem("nom", nom);
       window.localStorage.setItem("email", email);
@@ -41,6 +34,13 @@ const CommentsForm = ({ slug }) => {
       window.localStorage.removeItem("nom", nom);
       window.localStorage.removeItem("email", email);
     }
+
+    const commentObj = {
+      nom,
+      email,
+      commentaire,
+      slug,
+    };
 
     submitComment(commentObj).then(res => {
       setShowSuccessMessage(true);
