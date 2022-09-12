@@ -20,11 +20,11 @@ const PostWidget = ({ categories, slug }) => {
       <h3 className="text-gray-700 text-xl mb-8 font-semibold border-b pb-4">
         {slug ? "Articles Similaires" : "Articles Récents"}
       </h3>
-      {relatedPosts.map((post, i) => (
+      {[...relatedPosts].reverse().map((post, i) => (
         <div key={i} className="flex items-center w-full mb-4">
           <div className="w-16 flex-none">
             <Image
-              src={post.imagePrincipale.url}
+              src={post.imagePrincipale?.url}
               alt={post.titre}
               height="60px"
               width="60px"

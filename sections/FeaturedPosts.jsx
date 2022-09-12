@@ -74,9 +74,9 @@ const FeaturedPosts = () => {
         itemClass="px-4"
       >
         {dataLoaded &&
-          featuredPosts.map((post, index) => (
-            <FeaturedPostCard key={index} post={post} />
-          ))}
+          [...featuredPosts]
+            .reverse()
+            .map((post, index) => <FeaturedPostCard key={index} post={post} />)}
       </Carousel>
     </div>
   );
