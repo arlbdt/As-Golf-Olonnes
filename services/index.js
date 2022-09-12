@@ -5,30 +5,25 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 export const getPosts = async () => {
   const query = gql`
   query getPosts {
-    articlesConnection {
-      edges {
-        cursor
-        node {
-          createdAt
-          slug
-          titre
-          extrait
-          auteur {
-            id
-            nom
-            description
-            photo {
-              url
-            }
-          }
-          categories {
-            nom
-            slug
-          }
-          imagePrincipale {
-            url
-          }
+    articles {
+      auteur {
+        nom
+        description
+        id
+        photo {
+          url
         }
+      }
+      slug
+      titre
+      extrait
+      createdAt
+      imagePrincipale {
+        url
+      }
+      categories {
+        nom
+        slug
       }
     }
   }
@@ -36,7 +31,7 @@ export const getPosts = async () => {
 
   const result = await request(graphqlAPI, query);
 
-  return result.articlesConnection.edges;
+  return result.articles;
 };
 
 export const getRecentPosts = async () => {
@@ -165,21 +160,18 @@ export const getAdjacentPosts = async (createdAt, slug) => {
 export const getCategoryPost = async (slug) => {
   const query = gql`
     query GetCategoryPost($slug: String!) {
-      articlesConnection(where: {categories_some: {slug: $slug}}) {
-        edges {
-          cursor
-          node {
+      articles(where: {categories_some: {slug: $slug}}) {
             auteur {
-              description
               nom
+              description
               id
               photo {
                 url
               }
             }
-            createdAt
             slug
             titre
+            createdAt
             extrait
             imagePrincipale {
               url
@@ -187,16 +179,14 @@ export const getCategoryPost = async (slug) => {
             categories {
               nom
               slug
-            }
           }
         }
       }
-    }
   `;
 
   const result = await request(graphqlAPI, query, {slug});
 
-  return result.articlesConnection.edges;
+  return result.articles;
 };
 
 export const getFeaturedPosts = async () => {
