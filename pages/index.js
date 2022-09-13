@@ -11,7 +11,7 @@ export default function Home({posts}) {
     <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-10 mb-8">
       <Head>
         <title>AS | Golf Olonnes</title>
-        <meta name="description" content="Site internet de l'Association sportive du golf des Sables d'Olonne" />
+        <meta name="description" content="Site internet de l'Association Sportive du golf des Sables d'Olonne en Vendée, France." />
 
         <link rel="icon" href="/favicon/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />

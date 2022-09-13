@@ -8,7 +8,7 @@ const Pagination = ({ posts }) => {
       <>
         {currentPosts &&
           currentPosts.map((post, index) => (
-            <PostCard key={index} post={post} />
+            <PostCard key={index} post={post.node} />
           ))}
       </>
     );

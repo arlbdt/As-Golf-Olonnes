@@ -4,34 +4,39 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
 export const getPosts = async () => {
   const query = gql`
-  query getPosts {
-    articles {
-      auteur {
-        nom
-        description
-        id
-        photo {
-          url
+    query getPosts {
+      articlesConnection {
+        edges {
+          cursor
+          node {
+            auteur {
+              nom
+              description
+              id
+              photo {
+                url
+              }
+            }
+            createdAt
+            slug
+            titre
+            extrait
+            imagePrincipale {
+              url
+            }
+            categories {
+              nom
+              slug
+            }
+          }
         }
       }
-      slug
-      titre
-      extrait
-      createdAt
-      imagePrincipale {
-        url
-      }
-      categories {
-        nom
-        slug
-      }
     }
-  }
   `;
 
   const result = await request(graphqlAPI, query);
 
-  return result.articles;
+  return result.articlesConnection.edges;
 };
 
 export const getRecentPosts = async () => {
@@ -160,7 +165,10 @@ export const getAdjacentPosts = async (createdAt, slug) => {
 export const getCategoryPost = async (slug) => {
   const query = gql`
     query GetCategoryPost($slug: String!) {
-      articles(where: {categories_some: {slug: $slug}}) {
+      articlesConnection(where: {categories_some: {slug: $slug}}) {
+        edges {
+          cursor
+          node {
             auteur {
               nom
               description
@@ -169,9 +177,9 @@ export const getCategoryPost = async (slug) => {
                 url
               }
             }
+            createdAt
             slug
             titre
-            createdAt
             extrait
             imagePrincipale {
               url
@@ -179,20 +187,22 @@ export const getCategoryPost = async (slug) => {
             categories {
               nom
               slug
+            }
           }
         }
       }
+    }
   `;
 
   const result = await request(graphqlAPI, query, {slug});
 
-  return result.articles;
+  return result.articlesConnection.edges;
 };
 
 export const getFeaturedPosts = async () => {
   const query = gql`
     query getFeaturedPosts() {
-      articles(where: {articleVedette: true}) {
+      articles(where: {articleVedette: true}, orderBy: publishedAt_DESC) {
         auteur {
           nom
           photo {

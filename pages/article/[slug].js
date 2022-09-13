@@ -23,7 +23,7 @@ const PostDetails = ({post}) => {
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-10 mb-8">
             <Head>
                 <title>{`AS | Golf Olonnes - ${post.titre}`}</title>
-                <meta name="description" content={`AS | Golf Olonnes - ${post.titre}`} />
+                <meta name="description" content={`Blog de l'Association Sportive du golf des Sables d'Olonne - Article: ${post.titre}`} />
 
                 <link rel="icon" href="/favicon/favicon.ico" />
                 <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
@@ -71,7 +71,7 @@ export async function getStaticProps({params}) {
 export async function getStaticPaths() {
     const posts = await getPosts();
     return {
-        paths: posts.map(({slug}) => ({params: {slug}})),
+        paths: posts.map(({node: {slug}}) => ({params: {slug}})),
         fallback: true,
     };
 }
