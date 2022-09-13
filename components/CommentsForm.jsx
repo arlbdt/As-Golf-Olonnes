@@ -111,7 +111,7 @@ const CommentsForm = ({ slug }) => {
         </button>
         {showSuccessMessage && (
           <span className="text-xl float-right font-semibold mt-3 text-green-700">
-            Commentaire en attente de validation
+            Commentaire en attente de validation par l'admin
           </span>
         )}
       </div>

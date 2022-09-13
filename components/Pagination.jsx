@@ -8,7 +8,7 @@ const Pagination = ({ posts }) => {
       <>
         {currentPosts &&
           currentPosts.map((post, index) => (
-            <PostCard key={index} post={post.node} />
+            <PostCard key={index} post={post} />
           ))}
       </>
     );
@@ -34,7 +34,7 @@ const Pagination = ({ posts }) => {
       const newOffset = (e.selected * itemsPerPage) % posts.length;
       setItemOffset(newOffset);
       window.scrollTo({
-        top: 500,
+        top: 0,
         behavior: "smooth",
       });
     };

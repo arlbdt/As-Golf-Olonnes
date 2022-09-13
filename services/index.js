@@ -5,10 +5,7 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 export const getPosts = async () => {
   const query = gql`
     query getPosts {
-      articlesConnection {
-        edges {
-          cursor
-          node {
+      articles(last: 50,orderBy: publishedAt_ASC, stage: PUBLISHED) {
             auteur {
               nom
               description
@@ -30,13 +27,11 @@ export const getPosts = async () => {
             }
           }
         }
-      }
-    }
   `;
 
   const result = await request(graphqlAPI, query);
 
-  return result.articlesConnection.edges;
+  return result.articles;
 };
 
 export const getRecentPosts = async () => {
@@ -165,10 +160,7 @@ export const getAdjacentPosts = async (createdAt, slug) => {
 export const getCategoryPost = async (slug) => {
   const query = gql`
     query GetCategoryPost($slug: String!) {
-      articlesConnection(where: {categories_some: {slug: $slug}}) {
-        edges {
-          cursor
-          node {
+      articles(last: 100, where: {categories_some: {slug: $slug}}) {
             auteur {
               nom
               description
@@ -187,16 +179,14 @@ export const getCategoryPost = async (slug) => {
             categories {
               nom
               slug
-            }
           }
         }
       }
-    }
   `;
 
   const result = await request(graphqlAPI, query, {slug});
 
-  return result.articlesConnection.edges;
+  return result.articles;
 };
 
 export const getFeaturedPosts = async () => {

@@ -7,6 +7,7 @@ import FeaturedPosts from "../sections/FeaturedPosts";
 import {getPosts} from "../services";
 
 export default function Home({posts}) {
+  console.log(posts);
   return (
     <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-10 mb-8">
       <Head>
@@ -46,5 +47,6 @@ export async function getStaticProps() {
   const posts = (await getPosts()) || [];
   return {
     props: {posts},
+    revalidate: 10
   };
 }

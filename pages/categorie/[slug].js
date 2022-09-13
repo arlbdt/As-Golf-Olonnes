@@ -16,8 +16,8 @@ const CategoryPost = ({posts}) => {
     return (
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-10 mb-8">
             <Head>
-                <title>{`AS | Golf Olonnes - ${posts[0].node.categories[0].nom}`}</title>
-                <meta name="description" content={`Blog de l'Association Sportive du golf des Sables d'Olonne - Catégorie: ${posts[0].node.categories[0].nom}`} />
+                <title>{`AS | Golf Olonnes - ${posts[0].categories[0].nom}`}</title>
+                <meta name="description" content={`Blog de l'Association Sportive du golf des Sables d'Olonne - Catégorie: ${posts[0].categories[0].nom}`} />
 
                 <link rel="icon" href="/favicon/favicon.ico" />
                 <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />

@@ -26,19 +26,21 @@ const PostCard = ({ post }) => {
 
       <div className="flex flex-col text-center items-center gap-8 mb-8 w-full">
         <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-24">
-          <div className="flex items-center gap-4">
-            <Image
-              src={post.auteur.photo.url}
-              alt={post.auteur.nom}
-              height="30px"
-              width="30px"
-              unoptimized
-              className="rounded-full"
-            />
-            <p className="text-gray-700 text-sm md:text-base">
-              {post.auteur.nom}
-            </p>
-          </div>
+          {post.auteur && (
+            <div className="flex items-center gap-4">
+              <Image
+                src={post.auteur.photo.url}
+                alt={post.auteur.nom}
+                height="30px"
+                width="30px"
+                unoptimized
+                className="rounded-full"
+              />
+              <p className="text-gray-700 text-sm md:text-base">
+                {post.auteur.nom}
+              </p>
+            </div>
+          )}
 
           <div className="flex items-center gap-4">
             <FcCalendar size={28} />
