@@ -22,14 +22,25 @@ const FeaturedPostCard = ({ post }) => (
 
       {post.auteur && (
         <div className="absolute bottom-4 flex items-center w-full justify-center">
-          <Image
-            unoptimized
-            alt={post.auteur.nom}
-            height="30px"
-            width="30px"
-            className="align-middle drop-shadow-lg rounded-full"
-            src={post.auteur.photo.url}
-          />
+          {post.auteur.photo ? (
+            <Image
+              src={post.auteur.photo.url}
+              alt={post.auteur.nom}
+              height="30px"
+              width="30px"
+              unoptimized
+              className="rounded-full"
+            />
+          ) : (
+            <Image
+              src="/golf.png"
+              alt="golf"
+              height="30px"
+              width="30px"
+              unoptimized
+              className="rounded-full"
+            />
+          )}
           <p className="inline align-middle text-white text-shadow ml-2 font-medium">
             {post.auteur.nom}
           </p>

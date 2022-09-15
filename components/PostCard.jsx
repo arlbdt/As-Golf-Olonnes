@@ -28,14 +28,25 @@ const PostCard = ({ post }) => {
         <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-24">
           {post.auteur && (
             <div className="flex items-center gap-4">
-              <Image
-                src={post.auteur.photo.url}
-                alt={post.auteur.nom}
-                height="30px"
-                width="30px"
-                unoptimized
-                className="rounded-full"
-              />
+              {post.auteur.photo ? (
+                <Image
+                  src={post.auteur.photo.url}
+                  alt={post.auteur.nom}
+                  height="30px"
+                  width="30px"
+                  unoptimized
+                  className="rounded-full"
+                />
+              ) : (
+                <Image
+                  src="/golf.png"
+                  alt="golf"
+                  height="30px"
+                  width="30px"
+                  unoptimized
+                  className="rounded-full"
+                />
+              )}
               <p className="text-gray-700 text-sm md:text-base">
                 {post.auteur.nom}
               </p>
