@@ -95,6 +95,8 @@ export const getPostDetails = async (slug) => {
         titre
         extrait
         imagePrincipale {
+          width
+          height
           url
         }
         auteur {
