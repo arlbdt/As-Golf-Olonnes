@@ -32,25 +32,25 @@ const PostDetail = ({ post }) => {
               content={post.contenu.raw.children}
               renderers={{
                 h1: ({ children }) => (
-                  <h1 className="text-3xl font-bold my-2">{children}</h1>
+                  <h1 className="text-3xl font-bold my-2 py-1">{children}</h1>
                 ),
                 h2: ({ children }) => (
-                  <h2 className="text-2xl font-semibold">{children}</h2>
+                  <h2 className="text-2xl font-semibold py-1">{children}</h2>
                 ),
                 h3: ({ children }) => (
-                  <h3 className="text-xl font-semibold">{children}</h3>
+                  <h3 className="text-xl font-semibold py-1">{children}</h3>
                 ),
                 h4: ({ children }) => (
-                  <h4 className="text-lg font-semibold">{children}</h4>
+                  <h4 className="text-lg font-semibold py-1">{children}</h4>
                 ),
                 h5: ({ children }) => (
-                  <h5 className="text-base font-semibold">{children}</h5>
+                  <h5 className="text-base font-semibold py-1">{children}</h5>
                 ),
                 h6: ({ children }) => (
-                  <h6 className="text-base font-semibold">{children}</h6>
+                  <h6 className="text-base font-semibold py-1">{children}</h6>
                 ),
                 p: ({ children }) => (
-                  <p className="text-base font-normal">{children}</p>
+                  <p className="text-base font-normal py-1">{children}</p>
                 ),
                 bold: ({ children }) => (
                   <span className="font-semibold">{children}</span>
