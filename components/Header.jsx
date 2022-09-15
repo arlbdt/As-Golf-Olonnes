@@ -12,7 +12,7 @@ const Header = () => (
             className="hidden sm:block text-gray-700 border border-green-400 rounded-full p-[5px] cursor-pointer"
           />
           <span className="cursor-pointer font-bold text-2xl sm:text-3xl text-gray-700">
-            AS Golf Olonnes
+            AS Golf des Sables d'Olonnes
           </span>
         </div>
       </Link>

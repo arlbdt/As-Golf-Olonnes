@@ -22,7 +22,7 @@ const PostDetails = ({post}) => {
     return (
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-10 mb-8">
             <Head>
-                <title>{`AS | Golf Olonnes - ${post.titre}`}</title>
+                <title>{`AS | Golf des Sables d'Olonnes - ${post.titre}`}</title>
                 <meta name="description" content={`Blog de l'Association Sportive du golf des Sables d'Olonne - Article: ${post.titre}`} />
 
                 <link rel="icon" href="/favicon/favicon.ico" />
