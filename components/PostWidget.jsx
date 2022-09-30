@@ -16,7 +16,7 @@ const PostWidget = ({ categories, slug }) => {
   }, [categories, slug]);
 
   return (
-    <div className="bg-white shadow-lg rounded-lg p-8 lg:px-4 xl:px-8 mb-16">
+    <div className="bg-white shadow-lg rounded-lg p-8 lg:px-4 xl:px-8 mb-12">
       <h3 className="text-gray-700 text-xl mb-8 font-semibold border-b pb-4">
         {slug ? "Articles Similaires" : "Articles Récents"}
       </h3>
@@ -36,7 +36,7 @@ const PostWidget = ({ categories, slug }) => {
             <p className="text-gray-500 text-sm font-thin">
               {moment(post.createdAt).format("DD MMM YYYY")}
             </p>
-            <Link href={`/article/${post.slug}`}>
+            <Link href={`/articles/${post.slug}`}>
               <span className="text-base font-medium text-gray-700 cursor-pointer">{`${post.titre.slice(
                 0,
                 75

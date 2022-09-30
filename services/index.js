@@ -5,7 +5,7 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 export const getPosts = async () => {
   const query = gql`
     query getPosts {
-      articles(last: 50,orderBy: publishedAt_ASC, stage: PUBLISHED) {
+      articles(last: 150,orderBy: publishedAt_ASC, stage: PUBLISHED) {
             auteur {
               nom
               description
@@ -109,7 +109,14 @@ export const getPostDetails = async (slug) => {
         createdAt
         slug
         contenu {
-          raw
+          json
+          references {
+            ... on Asset {
+              id
+              url
+              mimeType
+            }
+          }
         }
         categories {
           nom
@@ -162,7 +169,7 @@ export const getAdjacentPosts = async (createdAt, slug) => {
 export const getCategoryPost = async (slug) => {
   const query = gql`
     query GetCategoryPost($slug: String!) {
-      articles(last: 100, where: {categories_some: {slug: $slug}}) {
+      articles(last: 150, where: {categories_some: {slug: $slug}}) {
             auteur {
               nom
               description

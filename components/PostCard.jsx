@@ -7,7 +7,7 @@ import { FcCalendar } from "react-icons/fc";
 const PostCard = ({ post }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg p-0 pb-4 lg:px-6 lg:pt-6 mb-16">
-      <Link href={`/article/${post.slug}`}>
+      <Link href={`/articles/${post.slug}`}>
         <div className="relative h-64 md:h-72 lg:h-80 cursor-pointer mb-6">
           <div
             className="absolute rounded-t-lg lg:rounded-lg bg-center bg-no-repeat bg-cover shadow-md inline-block w-full h-64 md:h-72 lg:h-80"
@@ -70,7 +70,7 @@ const PostCard = ({ post }) => {
         )}
 
         <div>
-          <Link href={`/article/${post.slug}`}>
+          <Link href={`/articles/${post.slug}`}>
             <span className="shadow-2xl transition duration-500 transform hover:-translate-y-1 inline-block bg-green-600 text-sm md:text-base font-medium rounded-full text-white px-8 py-3 cursor-pointer">
               Lire la suite...
             </span>

@@ -21,7 +21,7 @@ const AdjacentPostCard = ({ post, position }) => (
         {`${post.titre.slice(0, 75)}${post.titre.length > 74 ? "..." : ""}`}
       </p>
     </div>
-    <Link href={`/article/${post.slug}`}>
+    <Link href={`/articles/${post.slug}`}>
       <span className="z-10 cursor-pointer absolute w-full h-full" />
     </Link>
     {position === "LEFT" && (

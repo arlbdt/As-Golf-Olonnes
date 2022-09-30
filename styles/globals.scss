@@ -18,13 +18,7 @@ body {
     content: "";
     width: 100%;
     height: 100vh;
-    background: rgb(78, 194, 124);
-    background: linear-gradient(
-      135deg,
-      rgb(146, 248, 168) 0%,
-      rgb(78, 194, 124) 33%,
-      rgb(44, 171, 82) 66%
-    );
+    background: rgb(239, 238, 238);
     position: fixed;
     left: 0;
     top: 0;
@@ -35,9 +29,14 @@ body {
   }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.bg-gradient {
+  background: rgb(78, 194, 124);
+  background: linear-gradient(
+    135deg,
+    rgb(146, 248, 168) 0%,
+    rgb(78, 194, 124) 33%,
+    rgb(44, 171, 82) 66%
+  );
 }
 
 img {
@@ -58,7 +57,7 @@ img {
 
 .pagination li {
   padding: 0 0.25rem;
-  color: white;
+  color: rgb(15, 129, 61);
   font-size: 20px;
 }
 
@@ -75,8 +74,8 @@ img {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 2px solid white;
-  color: white;
+  border: 2px solid rgb(15, 129, 61);
+  color: rgb(15, 129, 61);
   font-weight: 500;
 }
 

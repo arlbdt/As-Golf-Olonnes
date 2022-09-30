@@ -29,7 +29,8 @@ const PostDetail = ({ post }) => {
           </div>
           <div className="text-gray-700">
             <RichText
-              content={post.contenu.raw.children}
+              content={post.contenu.json.children}
+              references={post.contenu.references}
               renderers={{
                 h1: ({ children }) => (
                   <h1 className="text-3xl font-bold my-2 py-1">{children}</h1>
@@ -55,6 +56,50 @@ const PostDetail = ({ post }) => {
                 bold: ({ children }) => (
                   <span className="font-semibold">{children}</span>
                 ),
+                a: ({ children, href, openInNewTab }) => (
+                  <a
+                    href={href}
+                    target={openInNewTab ? "_blank" : "_self"}
+                    className="text-green-700 font-semibold"
+                    rel="noreferrer"
+                  >
+                    {children}
+                  </a>
+                ),
+                blockquote: ({ children }) => (
+                  <blockquote className="pl-4 border-l-4 border-gray-700 text-base my-4">
+                    {children}
+                  </blockquote>
+                ),
+                code_block: ({ children }) => {
+                  return (
+                    <pre className="line-numbers language-none">
+                      <code>{children}</code>
+                    </pre>
+                  );
+                },
+                Asset: {
+                  application: ({ children, url }) => (
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-green-700 font-semibold"
+                    >
+                      {children}
+                    </a>
+                  ),
+                  "application/pdf": ({ url }) => {
+                    return (
+                      <iframe
+                        src={url}
+                        frameBorder="0"
+                        width="100%"
+                        height="500px"
+                      ></iframe>
+                    );
+                  },
+                },
               }}
             />
           </div>
@@ -65,3 +110,11 @@ const PostDetail = ({ post }) => {
 };
 
 export default PostDetail;
+
+// "application/pdf": (url, nodeId) => {
+//   return (
+//     <div className="post" key={nodeId}>
+//       <span>{url}</span>
+//     </div>
+//   );
+// },
