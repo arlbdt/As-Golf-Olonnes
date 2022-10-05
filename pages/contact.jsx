@@ -50,11 +50,30 @@ const Contact = () => {
             A Propos de l'association
           </h5>
           <p className=" my-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ex
-            quam excepturi ipsum modi quidem quis, voluptatibus reiciendis sed
-            eaque suscipit iure aliquam quos et? Similique error doloremque
-            dicta eius!
+            Adhérer à notre Association Sportive c'est participer à la vie d'un
+            véritable Club de Golf. Présente depuis la création du golf des
+            Sables d'Olonne en 1992, elle assure au mieux l'information et la
+            convivialité entre les adhérents.
           </p>
+        </div>
+
+        <div className="mb-12">
+          <h5 className="text-lg font-semibold text-gray-700">Rôle de l'AS</h5>
+          <ul className=" my-4 list-disc list-inside">
+            <li>Organiser des compétitions avec la direction du golf</li>
+            <li>Organiser les équipes de compétitions (Adultes et jeunes)</li>
+            <li>Participer à la formation des jeunes (Juniors Golf Club)</li>
+            <li>
+              Administrer le bon déroulement des compétitions et des résultats
+              (horaires de départs, enregistrement des scores)
+            </li>
+            <li>Organiser les remises de prix</li>
+            <li>
+              Informer les membres de l'AS de l'actualité du Club (panneaux
+              extérieurs, club house et site internet de l'AS)
+            </li>
+            <li>Echanger avec la fédération (FFG)</li>
+          </ul>
         </div>
 
         <div className="mb-24">
@@ -68,18 +87,18 @@ const Contact = () => {
                 href="https://www.golfdessablesdolonne.com/"
                 className="text-green-700 font-semibold"
               >
-                lien
+                LIEN
               </a>
             </li>
             <li>
-              Inscription aux compétitions:{" "}
+              S'inscrire aux compétitions via ISP:{" "}
               <a
                 target="_blank"
                 rel="noreferrer "
                 href="https://www.isp-golf.fr/"
                 className="text-green-700 font-semibold"
               >
-                ISP
+                LIEN
               </a>
             </li>
           </ul>
