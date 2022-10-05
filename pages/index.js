@@ -10,7 +10,7 @@ export default function Home({posts}) {
   return (
     <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-10 mb-8">
       <Head>
-        <title>AS | Golf des Sables d&#39;Olonnes</title>
+        <title>AS | Golf des Sables d&#39;Olonne</title>
         <meta name="description" content="Site internet de l&#39;Association Sportive du golf des Sables d&#39;Olonne en Vendée, France." />
 
         <link rel="icon" href="/favicon/favicon.ico" />

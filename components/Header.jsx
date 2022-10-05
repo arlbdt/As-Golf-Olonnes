@@ -12,7 +12,7 @@ const Header = () => (
             className="text-slate-100 border border-slate-100 rounded-full p-[5px] cursor-pointer"
           />
           <span className="hidden sm:block cursor-pointer font-medium sm:text-xl lg:text-2xl text-slate-100">
-            AS - Golf des Sables d&#39;Olonnes
+            AS - Golf des Sables d&#39;Olonne
           </span>
         </div>
       </Link>

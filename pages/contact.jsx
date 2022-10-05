@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-10 mb-20 flex flex-col items-center justify-center">
       <Head>
-        <title>AS | Golf des Sables d&#39;Olonnes - Contact</title>
+        <title>AS | Golf des Sables d&#39;Olonne - Contact</title>
         <meta
           name="description"
           content="Blog de l&#39;Association Sportive du golf des Sables d&#39;Olonne - Contact"

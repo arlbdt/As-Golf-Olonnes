@@ -16,7 +16,7 @@ const CategoryPost = ({posts}) => {
     return (
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-10 mb-8">
             <Head>
-                <title>AS | Golf des Sables d&#39;Olonnes - Catégories</title>
+                <title>AS | Golf des Sables d&#39;Olonne - Catégories</title>
                 <meta name="description" content="Blog de l&#39;Association Sportive du golf des Sables d&#39;Olonne - Catégories" />
 
                 <link rel="icon" href="/favicon/favicon.ico" />
