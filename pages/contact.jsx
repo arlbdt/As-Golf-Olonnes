@@ -85,7 +85,7 @@ const Contact = () => {
                 target="_blank"
                 rel="noreferrer "
                 href="https://www.golfdessablesdolonne.com/"
-                className="text-green-700 font-semibold"
+                className="text-green-700 font-semibold underline"
               >
                 LIEN
               </a>
@@ -96,7 +96,29 @@ const Contact = () => {
                 target="_blank"
                 rel="noreferrer "
                 href="https://www.isp-golf.fr/"
-                className="text-green-700 font-semibold"
+                className="text-green-700 font-semibold underline"
+              >
+                LIEN
+              </a>
+            </li>
+            <li>
+              Horaires de départ:{" "}
+              <a
+                target="_blank"
+                rel="noreferrer "
+                href="https://web.ffgolf.org/ffgolf/tee/tee.php?gk=7f934d874e35216521ab663211c6d79e"
+                className="text-green-700 font-semibold underline"
+              >
+                LIEN
+              </a>
+            </li>
+            <li>
+              Résultats des compétitions:{" "}
+              <a
+                target="_blank"
+                rel="noreferrer "
+                href="https://pages.ffgolf.org/resultats/liste-competitions/7f934d874e35216521ab663211c6d79e"
+                className="text-green-700 font-semibold underline"
               >
                 LIEN
               </a>
