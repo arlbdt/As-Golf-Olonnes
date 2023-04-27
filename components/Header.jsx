@@ -18,7 +18,7 @@ const Header = () => (
       </Link>
       <Link href="/contact">
         <a className="text-slate-100 uppercase text-base sm:text-lg font-medium">
-          Contact
+          Liens Utiles
         </a>
       </Link>
     </nav>
