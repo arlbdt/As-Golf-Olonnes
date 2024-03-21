@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { GiGolfFlag } from "react-icons/gi";
+import { MdOutlineAlternateEmail } from "react-icons/md";
 
 const Header = () => (
   <div className="mb-20 bg-green-700 shadow-lg">
@@ -16,11 +17,22 @@ const Header = () => (
           </span>
         </div>
       </Link>
-      <Link href="/contact">
-        <a className="text-slate-100 uppercase text-base sm:text-lg font-medium">
-          Liens Utiles
+      <div className="flex gap-4 md:gap-8 items-center">
+        <a
+          href="mailto:asgolfolonne85@gmail.com"
+          className="text-slate-100 uppercase text-base sm:text-lg font-medium"
+        >
+          <MdOutlineAlternateEmail
+            className="text-slate-100 cursor-pointer"
+            size={32}
+          />
         </a>
-      </Link>
+        <Link href="/contact">
+          <a className="text-slate-100 uppercase text-base sm:text-lg font-medium">
+            Liens Utiles
+          </a>
+        </Link>
+      </div>
     </nav>
   </div>
 );

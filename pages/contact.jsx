@@ -58,6 +58,18 @@ const Contact = () => {
         </div>
 
         <div className="mb-12">
+          <h5 className="text-lg font-semibold text-gray-700">
+            Membres du bureau
+          </h5>
+          <ul className=" my-4 list-disc list-inside">
+            <li>Président : François Garçon</li>
+            <li>Vice-Président : Patrick Danais</li>
+            <li>Trésorier : Alain Cailleau</li>
+            <li>Secrétaire : Yann Raison</li>
+          </ul>
+        </div>
+
+        <div className="mb-12">
           <h5 className="text-lg font-semibold text-gray-700">Rôle de l'AS</h5>
           <ul className=" my-4 list-disc list-inside">
             <li>Organiser des compétitions avec la direction du golf</li>
@@ -79,6 +91,7 @@ const Contact = () => {
         <div className="mb-24">
           <h5 className="text-lg font-semibold text-gray-700">Liens utiles</h5>
           <ul className="list-none my-4 flex flex-col gap-2">
+            <li>Adresse email de l'AS : asgolfolonne85@gmail.com</li>
             <li>
               Site internet du golf des Sables d'Olonne:{" "}
               <a
