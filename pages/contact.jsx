@@ -62,10 +62,11 @@ const Contact = () => {
             Membres du bureau
           </h5>
           <ul className=" my-4 list-disc list-inside">
-            <li>Président : François Garçon</li>
-            <li>Vice-Président : Patrick Danais</li>
+            <li>Président : Yann Raison</li>
+            <li>Vice-Président : Habib Rihani</li>
             <li>Trésorier : Alain Cailleau</li>
-            <li>Secrétaire : Yann Raison</li>
+            <li>Trésorier Adjoint: Rémi Bessé</li>
+            <li>Secrétaire : Sébastien Baudu</li>
           </ul>
         </div>
 
