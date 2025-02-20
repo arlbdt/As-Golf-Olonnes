@@ -73,7 +73,7 @@ const Contact = () => {
         <div className="mb-12">
           <h5 className="text-lg font-semibold text-gray-700">Rôle de l'AS</h5>
           <ul className=" my-4 list-disc list-inside">
-            <li>Organiser des compétitions avec la direction du golf</li>
+            <li>Organiser des compétitions et des animations avec la direction du golf</li>
             <li>Organiser les équipes de compétitions (Adultes et jeunes)</li>
             <li>Participer à la formation des jeunes (Juniors Golf Club)</li>
             <li>
