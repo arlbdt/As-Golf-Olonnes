@@ -11,6 +11,7 @@
   "dependencies": {
     "@emailjs/browser": "^3.7.0",
     "@graphcms/rich-text-react-renderer": "^0.6.1",
+    "@vercel/analytics": "^0.1.11",
     "graphql": "^16.6.0",
     "graphql-request": "^5.0.0",
     "html-react-parser": "^3.0.4",

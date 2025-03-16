@@ -9,7 +9,7 @@ const SEO = ({
   article = null,
 }) => {
   // Default values
-  const siteTitle = "AS | Golf des Sables d'Olonne";
+  const siteTitle = "Association Sportive du Golf des Sables d'Olonne";
   const defaultDescription =
     "Site internet de l'Association Sportive du golf des Sables d'Olonne en Vendée, France.";
   const defaultOgImage = "/og-default.png"; // Create this default image
