@@ -5,7 +5,7 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 export const getPosts = async () => {
   const query = gql`
     query getPosts {
-      articles(last: 150,orderBy: publishedAt_ASC, stage: PUBLISHED) {
+      articles(last: 150, orderBy: publishedAt_ASC, stage: PUBLISHED) {
             auteur {
               nom
               description
@@ -79,6 +79,7 @@ export const getCategories = async () => {
         categories {
           nom
           slug
+          sortOrder
         }
     }
   `;

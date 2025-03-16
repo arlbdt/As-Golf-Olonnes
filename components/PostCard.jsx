@@ -5,6 +5,12 @@ import Link from "next/link";
 import { FcCalendar } from "react-icons/fc";
 
 const PostCard = ({ post }) => {
+  const isSignificantUpdate =
+    post.updatedAt &&
+    new Date(post.updatedAt) - new Date(post.createdAt) >
+      30 * 24 * 60 * 60 * 1000 &&
+    new Date() - new Date(post.updatedAt) < 60 * 24 * 60 * 60 * 1000;
+
   return (
     <div className="bg-white shadow-lg rounded-lg p-0 pb-4 lg:px-6 lg:pt-6 mb-16">
       <Link href={`/articles/${post.slug}`}>
@@ -58,6 +64,11 @@ const PostCard = ({ post }) => {
             <span className="text-sm md:text-base text-gray-700">
               {moment(post.createdAt).format("DD MMM YYYY")}
             </span>
+            {isSignificantUpdate && (
+              <span className="text-sm md:text-base text-gray-700">
+                (Mis à jour le {moment(post.updatedAt).format("DD MMM YYYY")})
+              </span>
+            )}
           </div>
         </div>
 
@@ -72,7 +83,7 @@ const PostCard = ({ post }) => {
         <div>
           <Link href={`/articles/${post.slug}`}>
             <span className="shadow-2xl transition duration-500 transform hover:-translate-y-1 inline-block bg-green-600 text-sm md:text-base font-medium rounded-full text-white px-8 py-3 cursor-pointer">
-              Lire la suite...
+              Voir l'article
             </span>
           </Link>
         </div>

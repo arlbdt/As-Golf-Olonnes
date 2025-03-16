@@ -7,7 +7,20 @@ const Categories = () => {
 
   useEffect(() => {
     getCategories().then(newCategories => {
-      setCategories(newCategories);
+      // Sort categories: first by sortOrder (if available), then by name
+      const sortedCategories = [...newCategories].sort((a, b) => {
+        // If either doesn't have sortOrder, put them at the end
+        if (a.sortOrder === null && b.sortOrder === null) {
+          // If both don't have sortOrder, sort by name
+          return a.nom.localeCompare(b.nom);
+        }
+        if (a.sortOrder === null) return 1;
+        if (b.sortOrder === null) return -1;
+        // If both have sortOrder, sort by that
+        return a.sortOrder - b.sortOrder;
+      });
+
+      setCategories(sortedCategories);
     });
   }, []);
 

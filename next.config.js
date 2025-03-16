@@ -8,11 +8,21 @@ const nextConfig = {
     },
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**.graphassets.com',
-      },
+    domains: [
+      // Current domain for your assets (legacy system)
+      'media.graphassets.com',
+
+      // Hygraph CDN domains
+      'media.hygraph.com',
+
+      // New asset domains for EU Central 1 region
+      'eu-central-1-shared-euc1-01.graphassets.com',
+      'eu-central-1-shared-euc1-02.graphassets.com',
+      'eu-central-1.graphassets.com',
+
+      // Additional possible patterns based on your API endpoint
+      'api-eu-central-1.hygraph.com',
+      'api-eu-central-1.graphassets.com'
     ],
   },
 };
