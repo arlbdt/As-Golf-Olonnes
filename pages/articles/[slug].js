@@ -21,19 +21,19 @@ const PostDetails = ({post}) => {
 
     return (
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-10 mb-8">
-            <Head>
-                <title>{`AS | Golf des Sables d'Olonne - ${post.titre}`}</title>
-                <meta name="description" content={`Blog de l'Association Sportive du golf des Sables d'Olonne - Article: ${post.titre}`} />
-
-                <link rel="icon" href="/favicon/favicon.ico" />
-                <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-                <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-                <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-                <link rel="manifest" href="/favicon/site.webmanifest" />
-                <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
-                <meta name="msapplication-TileColor" content="#da532c" />
-                <meta name="theme-color" content="#ffffff" />
-            </Head>
+            <SEO
+                title={post.titre}
+                description={post.extrait || `Article: ${post.titre}`}
+                ogImage={post.imagePrincipale.url}
+                ogType="article"
+                url={`/articles/${post.slug}`}
+                article={{
+                    publishedAt: post.publishedAt,
+                    updatedAt: post.updatedAt,
+                    majorUpdate: post.majorUpdate,
+                    categories: post.categories
+                }}
+            />
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 <div className="col-span-1 lg:col-span-8">

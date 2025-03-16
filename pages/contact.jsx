@@ -1,44 +1,15 @@
-import Head from "next/head";
 import React from "react";
+import SEO from "../components/SEO";
 import ContactForm from "../components/ContactForm";
 
 const Contact = () => {
   return (
     <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-10 mb-20 flex flex-col items-center justify-center">
-      <Head>
-        <title>AS | Golf des Sables d&#39;Olonne - Contact</title>
-        <meta
-          name="description"
-          content="Blog de l&#39;Association Sportive du golf des Sables d&#39;Olonne - Contact"
-        />
-
-        <link rel="icon" href="/favicon/favicon.ico" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/favicon/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon/favicon-16x16.png"
-        />
-        <link rel="manifest" href="/favicon/site.webmanifest" />
-        <link
-          rel="mask-icon"
-          href="/favicon/safari-pinned-tab.svg"
-          color="#5bbad5"
-        />
-        <meta name="msapplication-TileColor" content="#da532c" />
-        <meta name="theme-color" content="#ffffff" />
-      </Head>
+      <SEO
+        title="Contact"
+        description="Contactez l'Association Sportive du golf des Sables d'Olonne - Informations sur l'association, membres du bureau et formulaire de contact"
+        url="/contact"
+      />
 
       <div className="w-full">
         <h2 className="text-2xl font-semibold text-gray-700 mt-12 mb-20 text-center">
@@ -73,7 +44,10 @@ const Contact = () => {
         <div className="mb-12">
           <h5 className="text-lg font-semibold text-gray-700">Rôle de l'AS</h5>
           <ul className=" my-4 list-disc list-inside">
-            <li>Organiser des compétitions et des animations avec la direction du golf</li>
+            <li>
+              Organiser des compétitions et des animations avec la direction du
+              golf
+            </li>
             <li>Organiser les équipes de compétitions (Adultes et jeunes)</li>
             <li>Participer à la formation des jeunes (Juniors Golf Club)</li>
             <li>

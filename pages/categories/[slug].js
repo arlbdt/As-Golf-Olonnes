@@ -1,12 +1,12 @@
 import React from 'react';
 import {useRouter} from 'next/router';
 import {getCategories, getCategoryPost} from '../../services';
-import Head from 'next/head';
+import SEO from '../../components/SEO';
 import Pagination from "../../components/Pagination";
 import Categories from '../../components/Categories';
 import Loader from '../../components/Loader';
 
-const CategoryPost = ({posts}) => {
+const CategoryPost = ({posts, category}) => {
     const router = useRouter();
 
     if (router.isFallback) {
@@ -15,19 +15,11 @@ const CategoryPost = ({posts}) => {
 
     return (
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-10 mb-8">
-            <Head>
-                <title>AS | Golf des Sables d&#39;Olonne - Catégories</title>
-                <meta name="description" content="Blog de l&#39;Association Sportive du golf des Sables d&#39;Olonne - Catégories" />
-
-                <link rel="icon" href="/favicon/favicon.ico" />
-                <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-                <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-                <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
-                <link rel="manifest" href="/favicon/site.webmanifest" />
-                <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
-                <meta name="msapplication-TileColor" content="#da532c" />
-                <meta name="theme-color" content="#ffffff" />
-            </Head>
+            <SEO
+                title={`Catégorie: ${category?.nom || 'Catégories'}`}
+                description={`Articles de la catégorie ${category?.nom || ''} - Blog de l'Association Sportive du golf des Sables d'Olonne`}
+                url={`/categories/${router.query.slug}`}
+            />
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 <div className="col-span-1 lg:col-span-8">
@@ -48,8 +40,15 @@ export default CategoryPost;
 export async function getStaticProps({params}) {
     const posts = await getCategoryPost(params.slug);
 
+    // Get category information
+    const categories = await getCategories();
+    const category = categories.find(cat => cat.slug === params.slug) || null;
+
     return {
-        props: {posts},
+        props: {
+            posts,
+            category
+        },
         revalidate: 10
     };
 }

@@ -125,6 +125,9 @@ export const getPostDetails = async (slug) => {
           }
         }
         createdAt
+        publishedAt
+        updatedAt
+        majorUpdate
         slug
         contenu {
           json
