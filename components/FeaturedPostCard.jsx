@@ -13,14 +13,14 @@ const FeaturedPostCard = ({ post }) => (
     <div className="flex flex-col items-center justify-center text-center rounded-lg px-4 py-6 absolute w-full h-full">
       <div>
         <p className="text-white mb-4 text-shadow font-semibold text-xs">
-          {moment(post.createdAt).format("DD MMM YYYY")}
+          {moment(post.publishedAt).format("DD MMM YYYY")}
         </p>
         <p className="text-white mb-4 text-shadow font-semibold text-xl text-center">
           {`${post.titre.slice(0, 50)}${post.titre.length > 49 ? "..." : ""}`}
         </p>
       </div>
 
-      {post.auteur && (
+      {/* {post.auteur && (
         <div className="absolute bottom-4 flex items-center w-full justify-center">
           {post.auteur.photo ? (
             <Image
@@ -45,7 +45,7 @@ const FeaturedPostCard = ({ post }) => (
             {post.auteur.nom}
           </p>
         </div>
-      )}
+      )} */}
     </div>
     <Link href={`/articles/${post.slug}`}>
       <span className="cursor-pointer absolute w-full h-full" />

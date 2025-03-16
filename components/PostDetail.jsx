@@ -24,7 +24,7 @@ const PostDetail = ({ post }) => {
             </h1>
             <div className="flex items-center gap-4">
               <FcCalendar size={24} />
-              <span>{moment(post.createdAt).format("DD MMM YYYY")}</span>
+              <span>{moment(post.publishedAt).format("DD MMM YYYY")}</span>
             </div>
           </div>
           <div className="text-gray-700">
@@ -93,7 +93,7 @@ const PostDetail = ({ post }) => {
                     return (
                       <iframe
                         src={url}
-                        frameBorder="0"
+                        style={{ border: "none" }}
                         width="100%"
                         height="500px"
                       ></iframe>
