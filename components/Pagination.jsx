@@ -25,7 +25,7 @@ const Pagination = ({ posts }) => {
     useEffect(() => {
       // Fetch items from another resources.
       const endOffset = itemOffset + itemsPerPage;
-      setCurrentPosts([...posts].reverse().slice(itemOffset, endOffset));
+      setCurrentPosts(posts.slice(itemOffset, endOffset));
       setPageCount(Math.ceil(posts.length / itemsPerPage));
     }, [itemOffset, itemsPerPage]);
 

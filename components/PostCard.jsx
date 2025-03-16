@@ -5,11 +5,8 @@ import Link from "next/link";
 import { FcCalendar } from "react-icons/fc";
 
 const PostCard = ({ post }) => {
-  const isSignificantUpdate =
-    post.updatedAt &&
-    new Date(post.updatedAt) - new Date(post.createdAt) >
-      30 * 24 * 60 * 60 * 1000 &&
-    new Date() - new Date(post.updatedAt) < 60 * 24 * 60 * 60 * 1000;
+  // Check for major update flag
+  const hasMajorUpdate = post.majorUpdate === true;
 
   return (
     <div className="bg-white shadow-lg rounded-lg p-0 pb-4 lg:px-6 lg:pt-6 mb-16">
@@ -32,7 +29,7 @@ const PostCard = ({ post }) => {
 
       <div className="flex flex-col text-center items-center gap-8 mb-8 w-full">
         <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-24">
-          {post.auteur && (
+          {/* {post.auteur && (
             <div className="flex items-center gap-4">
               {post.auteur.photo ? (
                 <Image
@@ -57,18 +54,19 @@ const PostCard = ({ post }) => {
                 {post.auteur.nom}
               </p>
             </div>
-          )}
+          )} */}
 
           <div className="flex items-center gap-4">
             <FcCalendar size={28} />
             <span className="text-sm md:text-base text-gray-700">
-              {moment(post.createdAt).format("DD MMM YYYY")}
+              {moment(post.publishedAt).format("DD MMM YYYY")}
+              {/* Show update date if majorUpdate is true */}
+              {hasMajorUpdate && post.updatedAt && (
+                <span className="ml-1">
+                  (Mis à jour le {moment(post.updatedAt).format("DD MMM YYYY")})
+                </span>
+              )}
             </span>
-            {isSignificantUpdate && (
-              <span className="text-sm md:text-base text-gray-700">
-                (Mis à jour le {moment(post.updatedAt).format("DD MMM YYYY")})
-              </span>
-            )}
           </div>
         </div>
 
