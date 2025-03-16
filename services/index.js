@@ -61,6 +61,7 @@ export const getRecentPosts = async () => {
       }
       slug
       createdAt
+      publishedAt
     }
   }
 `;
@@ -81,6 +82,7 @@ export const getSimilarPosts = async (categories, slug) => {
           url
         }
         createdAt
+        publishedAt
         slug
       }
     }
@@ -165,6 +167,7 @@ export const getAdjacentPosts = async (createdAt, slug) => {
           url
         }
         createdAt
+        publishedAt
         slug
       }
       previous:articles(
@@ -177,6 +180,7 @@ export const getAdjacentPosts = async (createdAt, slug) => {
           url
         }
         createdAt
+        publishedAt
         slug
       }
     }
@@ -200,6 +204,7 @@ export const getCategoryPost = async (slug) => {
               }
             }
             createdAt
+            publishedAt
             slug
             titre
             extrait
@@ -235,6 +240,7 @@ export const getFeaturedPosts = async () => {
         titre
         slug
         createdAt
+        publishedAt
       }
     }
   `;

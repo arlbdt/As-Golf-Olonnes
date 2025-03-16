@@ -1,6 +1,5 @@
 import React from "react";
 import moment from "moment";
-import Image from "next/image";
 import Link from "next/link";
 
 const FeaturedPostCard = ({ post }) => (
@@ -19,33 +18,6 @@ const FeaturedPostCard = ({ post }) => (
           {`${post.titre.slice(0, 50)}${post.titre.length > 49 ? "..." : ""}`}
         </p>
       </div>
-
-      {/* {post.auteur && (
-        <div className="absolute bottom-4 flex items-center w-full justify-center">
-          {post.auteur.photo ? (
-            <Image
-              src={post.auteur.photo.url}
-              alt={post.auteur.nom}
-              height="30px"
-              width="30px"
-              unoptimized
-              className="rounded-full"
-            />
-          ) : (
-            <Image
-              src="/golf.png"
-              alt="golf"
-              height="30px"
-              width="30px"
-              unoptimized
-              className="rounded-full"
-            />
-          )}
-          <p className="inline align-middle text-white text-shadow ml-2 font-medium">
-            {post.auteur.nom}
-          </p>
-        </div>
-      )} */}
     </div>
     <Link href={`/articles/${post.slug}`}>
       <span className="cursor-pointer absolute w-full h-full" />
