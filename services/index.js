@@ -2,6 +2,24 @@ import {request, gql} from 'graphql-request';
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
+// Add delay helper function
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+// Add throttled request function
+const throttledRequest = async (query, variables = {}) => {
+  try {
+    await delay(250); // Add 250ms delay between requests
+    return await request(graphqlAPI, query, variables);
+  } catch (error) {
+    if (error.response?.status === 429) {
+      console.log('Rate limit hit, waiting 2 seconds before retry...');
+      await delay(2000);
+      return await request(graphqlAPI, query, variables);
+    }
+    throw error;
+  }
+};
+
 export const getPosts = async () => {
   const query = gql`
     query getPosts {
@@ -35,7 +53,7 @@ export const getPosts = async () => {
     }
   `;
 
-  const result = await request(graphqlAPI, query);
+  const result = await throttledRequest(query);
 
   // Sort articles by their "effective date"
   const sortedArticles = [...result.articles].sort((a, b) => {
@@ -65,7 +83,7 @@ export const getRecentPosts = async () => {
     }
   }
 `;
-  const result = await request(graphqlAPI, query);
+  const result = await throttledRequest(query);
 
   return result.articles;
 };
@@ -87,7 +105,7 @@ export const getSimilarPosts = async (categories, slug) => {
       }
     }
   `;
-  const result = await request(graphqlAPI, query, {slug, categories});
+  const result = await throttledRequest(query, {slug, categories});
 
   return result.articles;
 };
@@ -103,7 +121,7 @@ export const getCategories = async () => {
     }
   `;
 
-  const result = await request(graphqlAPI, query);
+  const result = await throttledRequest(query);
 
   return result.categories;
 };
@@ -149,8 +167,7 @@ export const getPostDetails = async (slug) => {
     }
   `;
 
-  const result = await request(graphqlAPI, query, {slug});
-
+  const result = await throttledRequest(query, {slug});
   return result.article;
 };
 
@@ -224,7 +241,7 @@ export const getCategoryPost = async (slug) => {
     }
   `;
 
-  const result = await request(graphqlAPI, query, {slug});
+  const result = await throttledRequest(query, {slug});
 
   // Sort articles by their "effective date", just like in getPosts
   const sortedArticles = [...result.articles].sort((a, b) => {

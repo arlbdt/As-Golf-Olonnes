@@ -58,21 +58,47 @@ export default PostDetails;
 
 // Fetch data at build time
 export async function getStaticProps({params}) {
-    const data = await getPostDetails(params.slug);
-    return {
-        props: {
-            post: data,
-        },
-        revalidate: 10
-    };
+    try {
+        const data = await getPostDetails(params.slug);
+
+        // If no data was found, return 404
+        if (!data) {
+            return {
+                notFound: true,
+            };
+        }
+
+        return {
+            props: {
+                post: data,
+            },
+            // Revalidate every 10 minutes
+            revalidate: 600,
+        };
+    } catch (error) {
+        console.error('Error fetching post:', error);
+        return {
+            notFound: true,
+        };
+    }
 }
 
 // Specify dynamic routes to pre-render pages based on data.
 // The HTML is generated at build time and will be reused on each request.
 export async function getStaticPaths() {
     const posts = await getPosts();
+
+    // Only pre-render the 20 most recent posts at build time
+    const recentPosts = posts.slice(0, 20);
+
+    const paths = recentPosts.map(({slug}) => ({
+        params: {slug},
+    }));
+
     return {
-        paths: posts.map(({slug}) => ({params: {slug}})),
-        fallback: true,
+        paths,
+        // Change fallback to 'blocking'
+        // This will server-render pages on-demand if the path doesn't exist.
+        fallback: 'blocking',
     };
 }

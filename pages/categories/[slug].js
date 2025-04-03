@@ -45,27 +45,47 @@ export default CategoryPost;
 
 // Fetch data at build time
 export async function getStaticProps({params}) {
-    const posts = await getCategoryPost(params.slug);
+    try {
+        const posts = await getCategoryPost(params.slug);
+        const categories = await getCategories();
+        const category = categories.find(cat => cat.slug === params.slug) || null;
 
-    // Get category information
-    const categories = await getCategories();
-    const category = categories.find(cat => cat.slug === params.slug) || null;
+        // If category doesn't exist, return 404
+        if (!category) {
+            return {
+                notFound: true,
+            };
+        }
 
-    return {
-        props: {
-            posts,
-            category
-        },
-        revalidate: 10
-    };
+        return {
+            props: {
+                posts,
+                category,
+            },
+            // Revalidate every 10 minutes
+            revalidate: 600,
+        };
+    } catch (error) {
+        console.error('Error fetching category:', error);
+        return {
+            notFound: true,
+        };
+    }
 }
 
 // Specify dynamic routes to pre-render pages based on data.
 // The HTML is generated at build time and will be reused on each request.
 export async function getStaticPaths() {
     const categories = await getCategories();
+
+    // Pre-render all category pages since there are typically fewer categories
+    const paths = categories.map(({slug}) => ({
+        params: {slug},
+    }));
+
     return {
-        paths: categories.map(({slug}) => ({params: {slug}})),
-        fallback: true,
+        paths,
+        // Use blocking fallback
+        fallback: 'blocking',
     };
 }
