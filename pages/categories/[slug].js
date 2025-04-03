@@ -13,6 +13,7 @@ const CategoryPost = ({posts, category}) => {
         return <Loader />;
     }
 
+    // No need to sort here as it's already sorted in getCategoryPost
     return (
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-10 mb-8">
             <SEO
@@ -23,7 +24,13 @@ const CategoryPost = ({posts, category}) => {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 <div className="col-span-1 lg:col-span-8">
-                    <Pagination posts={posts} />
+                    {posts.length > 0 ? (
+                        <Pagination posts={posts} />
+                    ) : (
+                        <div className="text-center py-8">
+                            Aucun article dans cette catégorie pour le moment.
+                        </div>
+                    )}
                 </div>
                 <div className="col-span-1 lg:col-span-4">
                     <div className="relative lg:sticky top-8">

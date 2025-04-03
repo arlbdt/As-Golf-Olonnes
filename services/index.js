@@ -194,34 +194,50 @@ export const getAdjacentPosts = async (createdAt, slug) => {
 export const getCategoryPost = async (slug) => {
   const query = gql`
     query GetCategoryPost($slug: String!) {
-      articles(last: 150, where: {categories_some: {slug: $slug}}) {
-            auteur {
-              nom
-              description
-              id
-              photo {
-                url
-              }
-            }
-            createdAt
-            publishedAt
-            slug
-            titre
-            extrait
-            imagePrincipale {
-              url
-            }
-            categories {
-              nom
-              slug
+      articles(
+        last: 150, 
+        where: {categories_some: {slug: $slug}}
+      ) {
+        auteur {
+          nom
+          description
+          id
+          photo {
+            url
           }
         }
+        createdAt
+        publishedAt
+        updatedAt
+        majorUpdate
+        slug
+        titre
+        extrait
+        imagePrincipale {
+          url
+        }
+        categories {
+          nom
+          slug
+        }
       }
+    }
   `;
 
   const result = await request(graphqlAPI, query, {slug});
 
-  return result.articles;
+  // Sort articles by their "effective date", just like in getPosts
+  const sortedArticles = [...result.articles].sort((a, b) => {
+    // For articles with majorUpdate=true, use updatedAt as the effective date
+    // Otherwise, use publishedAt (or createdAt as fallback)
+    const aEffectiveDate = a.majorUpdate ? new Date(a.updatedAt) : new Date(a.publishedAt || a.createdAt);
+    const bEffectiveDate = b.majorUpdate ? new Date(b.updatedAt) : new Date(b.publishedAt || b.createdAt);
+
+    // Sort by effective date, newest first
+    return bEffectiveDate - aEffectiveDate;
+  });
+
+  return sortedArticles;
 };
 
 export const getFeaturedPosts = async () => {
