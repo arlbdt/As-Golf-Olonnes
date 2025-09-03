@@ -6,7 +6,9 @@ const FeaturedPostCard = ({ post }) => (
   <div className="relative h-72">
     <div
       className="absolute rounded-lg bg-center bg-no-repeat bg-cover shadow-xl inline-block w-full h-72"
-      style={{ backgroundImage: `url('${post.imagePrincipale.url}')` }}
+      style={{
+        backgroundImage: `url('${post.imagePrincipale?.url || "/golf.jpg"}')`,
+      }}
     />
     <div className="absolute rounded-lg bg-center bg-gradient-to-b opacity-50 from-gray-400 via-gray-700 to-black w-full h-72" />
     <div className="flex flex-col items-center justify-center text-center rounded-lg px-4 py-6 absolute w-full h-full">

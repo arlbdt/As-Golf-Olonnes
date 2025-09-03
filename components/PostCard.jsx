@@ -14,7 +14,11 @@ const PostCard = ({ post }) => {
         <div className="relative h-64 md:h-72 lg:h-80 cursor-pointer mb-6">
           <div
             className="absolute rounded-t-lg lg:rounded-lg bg-center bg-no-repeat bg-cover shadow-md inline-block w-full h-64 md:h-72 lg:h-80"
-            style={{ backgroundImage: `url('${post.imagePrincipale.url}')` }}
+            style={{
+              backgroundImage: `url('${
+                post.imagePrincipale?.url || "/golf.jpg"
+              }')`,
+            }}
           />
           <div className="absolute rounded-t-lg lg:rounded-lg bg-center bg-gradient-to-b opacity-50 from-gray-400 via-gray-700 to-black w-full h-64 md:h-72 lg:h-80" />
           <div className="flex px-4 py-6 items-center justify-center absolute w-full h-full">

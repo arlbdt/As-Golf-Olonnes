@@ -24,7 +24,7 @@ const PostDetails = ({post}) => {
             <SEO
                 title={post.titre}
                 description={post.extrait || `Article: ${post.titre}`}
-                ogImage={post.imagePrincipale.url}
+                ogImage={post.imagePrincipale?.url || "/golf.jpg"}
                 ogType="article"
                 url={`/articles/${post.slug}`}
                 article={{
