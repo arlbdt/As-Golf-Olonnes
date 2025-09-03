@@ -10,10 +10,10 @@ const PostDetail = ({ post }) => {
       <div className="bg-white shadow-lg rounded-lg lg:p-8 pb-12 mb-10">
         <div className="flex justify-center items-center">
           <Image
-            src={post.imagePrincipale.url}
+            src={post.imagePrincipale?.url || "/golf.jpg"}
             alt={post.titre}
-            width={post.imagePrincipale.width}
-            height={post.imagePrincipale.height}
+            width={post.imagePrincipale?.width || 800}
+            height={post.imagePrincipale?.height || 600}
             className="shadow-lg rounded-t-lg lg:rounded-lg"
           />
         </div>
@@ -29,8 +29,8 @@ const PostDetail = ({ post }) => {
           </div>
           <div className="text-gray-700">
             <RichText
-              content={post.contenu.json.children}
-              references={post.contenu.references}
+              content={post.contenu?.json?.children || []}
+              references={post.contenu?.references || []}
               renderers={{
                 h1: ({ children }) => (
                   <h1 className="text-3xl font-bold my-2 py-1">{children}</h1>
