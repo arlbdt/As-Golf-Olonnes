@@ -79,11 +79,11 @@ const Contact = () => {
               </a>
             </li>
             <li>
-              S'inscrire aux compétitions via ISP:{" "}
+              S'inscrire aux compétitions via ISP (anciennement isp-golf.fr):{" "}
               <a
                 target="_blank"
                 rel="noreferrer "
-                href="https://www.isp-golf.fr/"
+                href="https://isp.golf/"
                 className="text-green-700 font-semibold underline"
               >
                 LIEN
