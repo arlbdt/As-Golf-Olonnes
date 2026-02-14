@@ -2,6 +2,13 @@ import {request, gql} from 'graphql-request';
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
+if (!graphqlAPI) {
+  throw new Error(
+    'Missing NEXT_PUBLIC_GRAPHCMS_ENDPOINT. Create a .env.local file in the project root with:\n' +
+    'NEXT_PUBLIC_GRAPHCMS_ENDPOINT=https://your-project-id.eu-central-1.hygraph.com/v2/your-api-id/master'
+  );
+}
+
 // Add delay helper function
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -72,7 +79,7 @@ export const getPosts = async () => {
 export const getRecentPosts = async () => {
   const query = gql`
   query getRecentPosts() {
-    articles(last: 3, orderBy: publishedAt_ASC) {
+    articles(last: 3, orderBy: publishedAt_ASC, stage: PUBLISHED) {
       titre
       imagePrincipale {
         url
@@ -94,6 +101,7 @@ export const getSimilarPosts = async (categories, slug) => {
       articles(
         where: {slug_not: $slug, AND: {categories_some: {slug_in: $categories}}}
         last: 3
+        stage: PUBLISHED
       ) {
         titre
         imagePrincipale {
@@ -112,7 +120,7 @@ export const getSimilarPosts = async (categories, slug) => {
 
 export const getCategories = async () => {
   const query = gql`
-    query GetGategories {
+    query GetCategories {
         categories {
           nom
           slug
@@ -129,7 +137,7 @@ export const getCategories = async () => {
 export const getPostDetails = async (slug) => {
   const query = gql`
     query GetPostDetails($slug : String!) {
-      article(where: {slug: $slug}) {
+      article(where: {slug: $slug}, stage: PUBLISHED) {
         titre
         extrait
         imagePrincipale {
@@ -178,6 +186,7 @@ export const getAdjacentPosts = async (createdAt, slug) => {
         first: 1
         orderBy: createdAt_ASC
         where: {slug_not: $slug, AND: {createdAt_gte: $createdAt}}
+        stage: PUBLISHED
       ) {
         titre
         imagePrincipale {
@@ -191,6 +200,7 @@ export const getAdjacentPosts = async (createdAt, slug) => {
         first: 1
         orderBy: createdAt_DESC
         where: {slug_not: $slug, AND: {createdAt_lte: $createdAt}}
+        stage: PUBLISHED
       ) {
         titre
         imagePrincipale {
@@ -203,7 +213,7 @@ export const getAdjacentPosts = async (createdAt, slug) => {
     }
   `;
 
-  const result = await request(graphqlAPI, query, {slug, createdAt});
+  const result = await throttledRequest(query, {slug, createdAt});
 
   return {next: result.next[0], previous: result.previous[0]};
 };
@@ -214,6 +224,7 @@ export const getCategoryPost = async (slug) => {
       articles(
         last: 150, 
         where: {categories_some: {slug: $slug}}
+        stage: PUBLISHED
       ) {
         auteur {
           nom
@@ -260,7 +271,7 @@ export const getCategoryPost = async (slug) => {
 export const getFeaturedPosts = async () => {
   const query = gql`
     query getFeaturedPosts() {
-      articles(where: {articleVedette: true}, orderBy: publishedAt_DESC) {
+      articles(where: {articleVedette: true}, orderBy: publishedAt_DESC, stage: PUBLISHED) {
         auteur {
           nom
           photo {
@@ -278,7 +289,7 @@ export const getFeaturedPosts = async () => {
     }
   `;
 
-  const result = await request(graphqlAPI, query);
+  const result = await throttledRequest(query);
 
   return result.articles;
 };
@@ -306,7 +317,51 @@ export const getComments = async (slug) => {
     }
   `;
 
-  const result = await request(graphqlAPI, query, {slug});
+  const result = await throttledRequest(query, {slug});
 
   return result.commentaires;
+};
+
+export const getPageBySlug = async (slug) => {
+  const query = gql`
+    query GetPageBySlug($slug: String!) {
+      page(where: { slug: $slug }, stage: PUBLISHED) {
+        slug
+        title
+        metaDescription
+        content {
+          raw
+        }
+      }
+    }
+  `;
+
+  const result = await throttledRequest(query, { slug });
+  return result?.page ?? null;
+};
+
+/**
+ * Sponsors (homepage carousel). Requires a "Sponsor" model in Hygraph.
+ * See docs/HYGRAPH_SPONSORS.md for schema setup.
+ */
+export const getSponsors = async () => {
+  const query = gql`
+    query GetSponsors {
+      sponsors(stage: PUBLISHED) {
+        name
+        logo {
+          url
+        }
+        url
+      }
+    }
+  `;
+
+  try {
+    const result = await throttledRequest(query);
+    const list = result?.sponsors ?? [];
+    return list;
+  } catch (e) {
+    return [];
+  }
 };

@@ -2,6 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  async redirects() {
+    return [
+      { source: '/contact', destination: '/informations', permanent: true },
+    ];
+  },
   experimental: {
     images: {
       unoptimized: true,

@@ -27,9 +27,9 @@ const Header = () => (
             size={32}
           />
         </a>
-        <Link href="/contact">
+        <Link href="/informations">
           <a className="text-slate-100 uppercase text-base sm:text-lg font-medium">
-            Liens Utiles
+            Informations
           </a>
         </Link>
       </div>

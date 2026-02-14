@@ -41,6 +41,7 @@ const Pagination = ({ posts }) => {
 
     return (
       <>
+        <h2 className="text-2xl font-semibold text-gray-700 mb-8 text-center">Actualités</h2>
         <Posts currentPosts={currentPosts} />
         <ReactPaginate
           nextLabel="&#x2192;"
