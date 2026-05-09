@@ -1,6 +1,5 @@
-import React from "react";
 import {useRouter} from 'next/router';
-import {getPosts, getPostDetails} from "../../services";
+import {getPosts, getPostDetails, getSponsors} from "../../services";
 import SEO from "../../components/SEO";
 import PostDetail from "../../components/PostDetail";
 import Categories from "../../components/Categories";
@@ -10,9 +9,10 @@ import Comments from "../../components/Comments";
 import CommentsForm from "../../components/CommentsForm";
 import Loader from "../../components/Loader";
 import AdjacentPosts from "../../sections/AdjacentPosts";
+import SponsorsCarousel from "../../sections/SponsorsCarousel";
 
 
-const PostDetails = ({post}) => {
+const PostDetails = ({post, sponsors}) => {
     const router = useRouter();
 
     if (router.isFallback) {
@@ -39,6 +39,7 @@ const PostDetails = ({post}) => {
                 <div className="col-span-1 lg:col-span-8">
                     <PostDetail post={post} />
                     {post.auteur && <Author author={post.auteur} />}
+                    <SponsorsCarousel sponsors={sponsors} />
                     <AdjacentPosts slug={post.slug} createdAt={post.createdAt} />
                     <CommentsForm slug={post.slug} />
                     <Comments slug={post.slug} />
@@ -59,7 +60,10 @@ export default PostDetails;
 // Fetch data at build time
 export async function getStaticProps({params}) {
     try {
-        const data = await getPostDetails(params.slug);
+        const [data, sponsors] = await Promise.all([
+            getPostDetails(params.slug),
+            getSponsors(),
+        ]);
 
         // If no data was found, return 404
         if (!data) {
@@ -71,6 +75,7 @@ export async function getStaticProps({params}) {
         return {
             props: {
                 post: data,
+                sponsors,
             },
             // Revalidate every 10 minutes
             revalidate: 600,
