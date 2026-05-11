@@ -347,8 +347,9 @@ export const getPageBySlug = async (slug) => {
 export const getSponsors = async () => {
   const query = gql`
     query GetSponsors {
-      sponsors(stage: PUBLISHED) {
+      sponsors(stage: PUBLISHED, first: 100, orderBy: sortOrder_ASC) {
         name
+        sortOrder
         logo {
           url
         }
@@ -362,6 +363,7 @@ export const getSponsors = async () => {
     const list = result?.sponsors ?? [];
     return list;
   } catch (e) {
+    console.error('[getSponsors] Erreur:', e.message);
     return [];
   }
 };
