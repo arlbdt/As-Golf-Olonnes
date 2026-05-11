@@ -11,9 +11,10 @@ export default function Home({posts, sponsors}) {
       <SEO url="/" />
       <FeaturedPosts />
 
+      <SponsorsCarousel sponsors={sponsors} />
+
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-4 md:gap-6 lg:gap-12 mb-10">
         <div className="col-span-1 lg:col-span-8">
-          <SponsorsCarousel sponsors={sponsors} />
           <Pagination posts={posts} />
         </div>
         <div className="col-span-1 lg:col-span-4">

@@ -9,15 +9,15 @@ import "react-multi-carousel/lib/styles.css";
 const responsive = {
   desktop: {
     breakpoint: { max: 4000, min: 1024 },
-    items: 2,
+    items: 3,
   },
   tablet: {
     breakpoint: { max: 1024, min: 768 },
-    items: 2,
+    items: 3,
   },
   smallTablet: {
     breakpoint: { max: 768, min: 640 },
-    items: 1,
+    items: 2,
   },
   mobile: {
     breakpoint: { max: 640, min: 0 },
@@ -28,11 +28,12 @@ const responsive = {
 const SponsorCard = ({ sponsor }) => {
   const logoUrl = sponsor.logoUrl || sponsor.logo?.url;
   const content = (
-    <div className="w-full max-w-md mx-auto aspect-[4/3] flex items-center justify-center rounded-lg bg-white shadow-xl border border-gray-100 overflow-hidden p-6">
+    <div className="w-full h-28 flex items-center justify-center rounded-lg bg-white shadow-xl border border-gray-100 overflow-hidden p-4">
       <img
         src={logoUrl}
         alt={sponsor.name || "Sponsor"}
-        className="w-full h-full object-contain"
+        loading="lazy"
+        className="max-w-full max-h-full object-contain"
       />
     </div>
   );
@@ -55,7 +56,7 @@ const SponsorCard = ({ sponsor }) => {
 
 const SponsorsCarousel = ({ sponsors: sponsorsProp = [] }) => {
   const sponsorsWithLogo = (sponsorsProp || []).filter(
-    s => s && (s.logoUrl || s.logo?.url)
+    s => s && (s.logoUrl || s.logo?.url),
   );
 
   if (sponsorsWithLogo.length === 0) return null;
